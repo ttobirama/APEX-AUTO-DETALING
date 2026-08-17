@@ -1,0 +1,25 @@
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self' https:; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# HTML: always revalidate (fresh content, cached assets)
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Images are content-addressed by filename (buyer swaps = new file) -> cache forever
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Versioned-by-edit CSS/JS: short TTL + stale-while-revalidate so updates propagate fast
+/css/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/js/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# API must never be cached
+/api/*
+  Cache-Control: no-store

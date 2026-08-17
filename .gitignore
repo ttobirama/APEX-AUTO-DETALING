@@ -1,0 +1,32 @@
+# --- Secrets: NEVER commit these ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# --- Local tooling / editors ---
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+*.swp
+
+# --- Deployment (Vercel / Netlify) ---
+.vercel/
+.netlify/
+
+# --- Build output (in case the site is ever built) ---
+node_modules/
+dist/
+build/
+out/
+.next/
+
+# --- Local photos are fine to commit, but add any that are client-licensed here:
+# assets/img/*.jpg
+# assets/img/*.jpeg
+# assets/img/*.webp
